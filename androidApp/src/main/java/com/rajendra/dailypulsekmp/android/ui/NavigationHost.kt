@@ -6,8 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.rajendra.dailypulsekmp.android.ui.home.HomeScreen
-import com.rajendra.dailypulsekmp.presentation.viewmodel.HomeViewModel
+import com.rajendra.dailypulsekmp.android.ui.home.NewsScreen
+import com.rajendra.dailypulsekmp.presentation.viewmodel.NewsViewModel
 
 @Composable
 fun MyAppNavHost(
@@ -21,7 +21,7 @@ fun MyAppNavHost(
         modifier = modifier
     ) {
         composable(AppDestinations.HOME_SCREEN) {
-            HomeScreen({}, homeViewModel = HomeViewModel())
+            NewsScreen({})
         }
     }
 }

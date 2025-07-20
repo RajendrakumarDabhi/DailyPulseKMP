@@ -2,7 +2,6 @@ package com.rajendra.dailypulsekmp.data.network
 
 import com.rajendra.dailypulsekmp.httpClientEngineFactory
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
@@ -48,6 +47,5 @@ fun createHttpClient(): HttpClient { // No need to pass factory if using the exp
             header(HttpHeaders.ContentType, ContentType.Application.Json)
             // Add API Key securely (e.g., via an interceptor or passed through)
         }
-        // ... other configurations ...
     }
 }

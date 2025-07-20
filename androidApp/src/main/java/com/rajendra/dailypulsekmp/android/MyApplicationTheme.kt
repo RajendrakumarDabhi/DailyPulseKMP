@@ -1,4 +1,4 @@
-package com.rajendra.dailypulsekmp.android.ui
+package com.rajendra.dailypulsekmp.android
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape

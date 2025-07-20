@@ -36,18 +36,19 @@ import coil.request.ImageRequest
 import com.rajendra.dailypulsekmp.android.ui.comman.ErrorContent
 import com.rajendra.dailypulsekmp.android.ui.comman.LoadingIndicator
 import com.rajendra.dailypulsekmp.domain.model.NewsApiResponse
-import com.rajendra.dailypulsekmp.presentation.viewmodel.HomeViewModel
+import com.rajendra.dailypulsekmp.presentation.viewmodel.NewsViewModel
 import com.rajendra.dailypulsekmp.presentation.viewmodel.NewsScreenState
+import org.koin.androidx.compose.getViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(
+fun NewsScreen(
     onEvent: () -> Unit,
-    homeViewModel: HomeViewModel
+    newsViewModel: NewsViewModel= getViewModel()
 ) {
-    val screenState = homeViewModel.screenState.collectAsState().value
+    val screenState = newsViewModel.screenState.collectAsState().value
     LaunchedEffect(key1 = Unit) {
-        homeViewModel.getNewsList() // Call your ViewModel function to fetch data
+        newsViewModel.getNewsList() // Call your ViewModel function to fetch data
     }
 
     Scaffold(

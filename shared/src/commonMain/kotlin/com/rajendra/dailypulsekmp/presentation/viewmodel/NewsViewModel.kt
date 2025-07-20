@@ -1,7 +1,6 @@
 package com.rajendra.dailypulsekmp.presentation.viewmodel
 
 import com.rajendra.dailypulsekmp.data.network.NewsApiService
-import com.rajendra.dailypulsekmp.data.network.createHttpClient
 import com.rajendra.dailypulsekmp.domain.model.NewsApiResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -9,12 +8,10 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
-class HomeViewModel : BaseViewModel() {
+class NewsViewModel(val newsApiService: NewsApiService) : BaseViewModel() {
     private val _state: MutableStateFlow<NewsScreenState> =
         MutableStateFlow(NewsScreenState.Loading)
     val screenState: StateFlow<NewsScreenState> = _state
-    private val newsApiService = NewsApiService(createHttpClient())
-
 
     suspend fun getNewsList() {
         _state.emit(NewsScreenState.Loading)
