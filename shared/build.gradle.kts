@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinxSerialization) // <--- APPLY THE PLUGIN HERE
 }
 
 kotlin {
@@ -15,11 +16,12 @@ kotlin {
             }
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
+    //noinspection WrongGradleMethod
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
@@ -30,6 +32,30 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             //put your multiplatform dependencies here
+
+            //Rest API
+            implementation(libs.ktor.client.core) // Or the latest version
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            // For logging (optional but recommended)
+            implementation(libs.ktor.client.logging)
+
+            //DI Koin
+            implementation(libs.koin.core) // Core Koin library
+            implementation(libs.koin.ktor)  // For Ktor integration (optional, but can be useful)
+
+            implementation(libs.kotlinx.datetime)
+
+        }
+        androidMain.dependencies {
+            implementation(libs.ktor.client.android)
+            implementation(libs.androidx.lifecycle.viewmodel.android)
+
+            //DI
+            implementation(libs.koin.android) // For Android-specific Koin features (like viewModelScope)
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin) // For modern KMM projects
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
